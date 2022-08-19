@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Users</title>
+</head>
+<body>
+<div layout:fragment="page_content" id="page_content">
+    <div class="card">
+        <div class="card-divider clearfix">
+            <h4 class="float-left">Users</h4>
+            <a class="hollow button float-right" th:href="@{/admin/users/new}">Add
+                User
+            </a>
+        </div>
+        <div class="card-section">
+            <table id="datatable" class="hover">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="user : ${users}">
+                    <tr>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.first_name}"></td>
+                        <td th:text="${user.last_name}"></td>
+                        <td th:text="${user.city}"></td>
+                        <td th:text="${user.state}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td>
+                            <a class="hollow button"
+                               th:href="@{'/admin/users/'+${user.id} + '/edit'}">
+                                Edit
+                            </a>
+                            <a class="hollow button"
+                               th:href="@{'/admin/users/'+ ${user.id} + '/delete'}">Delete
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

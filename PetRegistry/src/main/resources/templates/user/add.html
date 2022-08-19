@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add User</title>
+</head>
+<body>
+<div layout:fragment="page_content" id="page_content">
+    <div class="card">
+        <div class="card-divider ">
+            Add User
+        </div>
+        <div class="card-section">
+            <form id="myForm" action="/admin/users/new"
+                  th:object="${user}" method="post" class="grid-container">
+                <div class="grid-x grid-padding-x">
+
+                    <div class="columns large-12 cell">
+                        <label>Username :</label>
+                        <input th:field="*{username}"
+                               type="text" name="username" class="form-control"
+                               placeholder="Username" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('username'))} ? is-invalid-input "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('username')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>First Name :</label>
+                        <input th:field="*{first_name}"
+                               type="text" name="first_name" class="form-control"
+                               placeholder="First Name" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('first_name'))} ? is-invalid-input  "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('first_name')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>Last Name :</label>
+                        <input th:field="*{last_name}"
+                               type="text" name="last_name" class="form-control"
+                               placeholder="Last Name" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('last_name'))} ? is-invalid-input  "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('last_name')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>Password :</label>
+                        <input th:field="*{password}"
+                               type="password" name="password" class="form-control"
+                               placeholder="Password" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('password'))} ? is-invalid-input  "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('last_name')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>Confirm Password :</label>
+                        <input th:field="*{confirmPassword}"
+                               type="password" name="confirmPassword" class="form-control"
+                               placeholder="Confirm Password" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('confirmPassword'))} ? is-invalid-input  "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('confirmPassword')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>City :</label>
+                        <input th:field="*{city}"
+                               type="text" name="city" class="form-control"
+                               placeholder="City" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('city'))} ? is-invalid-input  "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('city')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns medium-12 large-6 cell">
+                        <label>State :</label>
+                        <input th:field="*{state}"
+                               type="text" name="state" class="form-control"
+                               placeholder="State" required="required"
+                               th:classappend="${not #lists.isEmpty(#fields.errors('state'))} ? is-invalid-input "
+                        />
+                        <span class="form-error is-visible">
+                        <p th:each="error: ${#fields.errors('state')}" th:text="${error}">Invalid data</p>
+                    </span>
+                    </div>
+                    <div class="columns large-12 cell">
+                        <label>Roles :</label>
+                        <select class="form-control" th:field="*{role}" required>
+                            <option value="ROLE_ADMIN">ADMIN</option>
+                            <option value="ROLE_CITIZEN">CITIZEN</option>
+                            <option value="ROLE_VET">VET</option>
+                            <option value="ROLE_EMPLOYEE">EMPLOYEE</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Submit"
+                           class="button"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
